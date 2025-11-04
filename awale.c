@@ -70,6 +70,17 @@ static void apply_capture(Game*g,Player p,int last){
 }
 
 typedef enum { CONTINUE,G1WIN,G2WIN,DRAW } State;
+
+// Vérifie si le joueur p a au moins un coup possible
+static int has_move(const Game *g, Player p) {
+    for (int i = 0; i < NHOLES; ++i) {
+        if (!is_owned(p, i)) continue;
+        const Hole *h = &g->h[i];
+        if (h->r > 0 || h->b > 0 || h->t > 0) return 1;
+    }
+    return 0;
+}
+
 static State check_end(const Game*g){
     if(g->cap[P1]>=49)return G1WIN;
     if(g->cap[P2]>=49)return G2WIN;
@@ -77,6 +88,9 @@ static State check_end(const Game*g){
         if(g->cap[P1]>g->cap[P2])return G1WIN;
         if(g->cap[P2]>g->cap[P1])return G2WIN;
         return DRAW;
+    }
+    if (!has_move(g, g->to_play)) {
+        return (g->to_play == P1) ? G2WIN : G1WIN;
     }
     return CONTINUE;
 }
