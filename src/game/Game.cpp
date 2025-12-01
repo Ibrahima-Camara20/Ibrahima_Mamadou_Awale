@@ -4,16 +4,10 @@
 #include <iomanip>
 #include <cctype>
 
-// ---------------------------
-// Constructeur
-// ---------------------------
 Game::Game() : h(NHOLES), to_play(Player::P1) {
     init_game();
 }
 
-// ---------------------------
-// Initialisation
-// ---------------------------
 void Game::init_game() {
     for (auto &cell : h)
         cell = {2, 2, 2};
@@ -22,9 +16,6 @@ void Game::init_game() {
     to_play = Player::P1;
 }
 
-// ---------------------------
-// Fonctions utilitaires
-// ---------------------------
 int Game::wrap(int i) const {
     return (i + NHOLES) % NHOLES;
 }
@@ -44,10 +35,6 @@ int Game::sum_board() const {
         s += sum_hole(i);
     return s;
 }
-
-// ---------------------------
-// Affichage
-// ---------------------------
 void Game::print_board() const {
     std::cout << "\n=========== PLATEAU ===========\n";
 
@@ -179,6 +166,9 @@ void Game::apply_capture(Player p, int last) {
 State Game::check_end() const {
     if (cap[0] >= 49) return State::G1WIN;
     if (cap[1] >= 49) return State::G2WIN;
+    
+    // Draw if both have >= 40
+    if (cap[0] >= 40 && cap[1] >= 40) return State::DRAW;
 
     if (sum_board() < 10) {
         if (cap[0] > cap[1]) return State::G1WIN;
@@ -187,6 +177,7 @@ State Game::check_end() const {
     }
 
     if (generate_moves(to_play).empty()) {
+        // Should be handled by starvation check in play_move, but as fallback:
         return (to_play == Player::P1) ? State::G2WIN : State::G1WIN;
     }
 
@@ -249,6 +240,17 @@ bool Game::play_move(const Move &mv) {
     if (last >= 0)
         apply_capture(p, last);
 
-    to_play = (p == Player::P1 ? Player::P2 : Player::P1);
+    // Check for starvation
+    Player opponent = (p == Player::P1 ? Player::P2 : Player::P1);
+    if (generate_moves(opponent).empty()) {
+        int remaining = 0;
+        for (auto &cell : h) {
+            remaining += cell.r + cell.b + cell.t;
+            cell = {0, 0, 0};
+        }
+        cap[(int)p] += remaining;
+    }
+
+    to_play = opponent;
     return true;
 }

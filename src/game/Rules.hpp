@@ -10,6 +10,9 @@ enum class Player { P1 = 0, P2 = 1 };
 enum class Behav { RED = 0, BLUE = 1 };
 
 // Type de mouvement
+// how much space in memory this enum takes ?
+// https://stackoverflow.com/questions/98650/how-do-i-determine-the-size-of-an-enum-type-in-c
+
 enum class MoveType { R, B, TR, TB };
 
 // États du jeu

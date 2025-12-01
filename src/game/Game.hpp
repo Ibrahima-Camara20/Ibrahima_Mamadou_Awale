@@ -31,13 +31,14 @@ public:
     std::vector<Hole> h;
     int cap[2];
     Player to_play;
+    
+    int sum_board() const;
+    bool is_owned(Player p, int idx) const;
 
 private:
     // Fonctions utilitaires (gardaient static en C)
     int wrap(int i) const;
-    bool is_owned(Player p, int idx) const;
     int sum_hole(int idx) const;
-    int sum_board() const;
 
     // Semis
     int next_drop_idx(Player p, int src, Behav beh, int cur) const;
