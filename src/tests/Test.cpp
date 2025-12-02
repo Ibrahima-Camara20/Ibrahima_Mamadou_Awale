@@ -161,7 +161,8 @@ void test_alphabeta() {
     while (g.check_end() == State::CONTINUE && moves < 200) {
         Bot* current = (g.to_play == Player::P1) ? (Bot*)&p1 : (Bot*)&p2;
         // Give AlphaBeta more time (e.g. 0.1s)
-        Move mv = current->suggest_move(g, 0.1);
+        
+        Move mv = current->suggest_move(g, 0.5);
         
         if (!g.play_move(mv)) {
             std::cout << "Bot " << current->name() << " played invalid move!\n";

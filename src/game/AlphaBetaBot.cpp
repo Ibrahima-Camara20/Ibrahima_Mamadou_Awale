@@ -63,7 +63,8 @@ Move AlphaBetaBot::suggest_move(const Game& g, double time_limit) {
     // If current player is P1, we want max(evaluate).
     // If current player is P2, we want min(evaluate).
     bool maximizing = (g.to_play == Player::P1);
-    
+    // how deep can we go? // 20 is arbitrary // how many moves can we look ahead?
+     
     while (!time_up && max_depth <= 20) { // Cap depth to avoid infinite loop
         int best_val = maximizing ? std::numeric_limits<int>::min() : std::numeric_limits<int>::max();
         Move current_best_move = moves[0];
@@ -104,7 +105,7 @@ Move AlphaBetaBot::suggest_move(const Game& g, double time_limit) {
         }
     }
     
-    // std::cout << "Nodes explored: " << nodes_explored << " Max Depth: " << max_depth - 1 << "\n";
+    std::cout << "Nodes explored: " << nodes_explored << " Max Depth: " << max_depth - 1 << "\n";
     return best_move;
 }
 
@@ -133,7 +134,8 @@ int AlphaBetaBot::minimax(Game& g, int depth, int alpha, int beta, bool maximizi
         }
         return maxEval;
     } else { // P2
-        int minEval = std::numeric_limits<int>::max();
+
+        int minEval = std::numeric_limits<int>::max(); 
         for (const auto& mv : moves) {
             Game temp = g;
             temp.play_move(mv);
