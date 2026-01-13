@@ -3,6 +3,7 @@
 *.log
 *.out
 *.exe
+*.ini
 *.o
 .vscode/
 Arena/
