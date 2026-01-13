@@ -1,0 +1,11 @@
+*.class
+*.jar
+*.log
+*.out
+*.exe
+*.o
+.vscode/
+Arena/
+Awale/
+cours/
+version3/
