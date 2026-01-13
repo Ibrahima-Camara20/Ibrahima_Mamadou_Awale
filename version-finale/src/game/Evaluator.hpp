@@ -38,7 +38,9 @@ public:
         
         // Si moins de 10 graines, le jeu s'arrête. Celui qui a le plus a gagné.
         if (state.total_seeds < 10) {
-            return (state.score_p1 > state.score_p2) ? 1000000.0 : -1000000.0;
+            if (state.score_p1 > state.score_p2) return 1000000.0;
+            if (state.score_p2 > state.score_p1) return -1000000.0;
+            return 0.0;  // Draw
         }
 
         const EvalWeights& w = get_weights(state.total_seeds);

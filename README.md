@@ -10,13 +10,17 @@ Implémentation d'une IA compétitive pour le jeu d'Awale avec plusieurs niveaux
 ## Compilation
 
 ```bash
-Dans le dossier Arene/ :
+Sous linux : 
+
+Tout se passe dans le dossier Arene/ :
+make clean 
 make
-Puis mettre le nom du fichier super_bot ainsi que l\'adversaire dans le fichier Arbitre.java Arene/
+Puis mettre le nom du fichier super_bot ainsi que celui de l\'adversaire dans le fichier Arbitre.java 
 
 # Arene
 javac Arbitre.java
 java Arbitre
+
 ```
 
 ## Auteurs

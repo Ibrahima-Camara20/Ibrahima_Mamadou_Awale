@@ -64,7 +64,7 @@ Move AlphaBetaBot::suggest_move(const Game &g, double time_limit) {
 
 
   try {
-    while (!time_up && max_depth <= 20) { // Cap depth to avoid infinite loop
+    while (!time_up && max_depth <= 50) { // Cap depth to avoid infinite loop
       int best_val = maximizing ? std::numeric_limits<int>::min()
                                 : std::numeric_limits<int>::max();
       Move current_best_move = moves[0];

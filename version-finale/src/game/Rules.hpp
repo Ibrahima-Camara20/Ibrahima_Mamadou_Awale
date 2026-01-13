@@ -27,7 +27,7 @@ struct EvalWeights {
 };
 
 // Phase 1: Opening
-inline EvalWeights phase1 = {100.0, 10.0, -40.0, 30.0, -50.0, 60.0, 50.0, 5.0, 20.0};
+inline EvalWeights phase1 = {500.0, 20.0, -150.0, 120.0, -200.0, 30.0, 40.0, 25.0, 20.0};
 // Phase 2: Midgame (Agression maximale)
 inline EvalWeights phase2 = {500.0, 20.0, -150.0, 120.0, -200.0, 30.0, 40.0, 25.0, 20.0};
 // Phase 3: Endgame (Précision et Anti-Famine)
