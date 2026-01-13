@@ -8,7 +8,7 @@
 int main() {
     Game game;
     AlphaBetaBot bot;
-    const double time = 1.0;
+    const double time = 2.8;
     
     std::string line;
     while (std::getline(std::cin, line)) {
@@ -45,13 +45,14 @@ int main() {
         
         // Check if it's a move (starts with a digit: 1R, 5TR, etc.)
         if (!line.empty() && std::isdigit(line[0])) {
-            // Apply opponent's move
-            apply_opponent_move(game, line);
+            // Parse and apply opponent's move
+            Move opp_move = parse_move(line);
+            game.play_move(opp_move);
             
             // Check if game ended after opponent's move
             State s = game.check_end();
             if (s != State::CONTINUE) {
-                std::cout << format_result(s, game) << std::endl;
+                std::cout << format_result(game, opp_move) << std::endl;
                 continue;
             }
             
@@ -73,7 +74,7 @@ int main() {
             // Check if game ended after my move
             s = game.check_end();
             if (s != State::CONTINUE) {
-                std::cout << format_result(s, game) << std::endl;
+                std::cout << format_result(game, my_move) << std::endl;
             } else {
                 // Send my move
                 std::cout << format_move(my_move) << std::endl;

@@ -5,7 +5,8 @@ public class Arbitre {
     private static final int TIMEOUT_SECONDS = 3;
 
     public static void main(String[] args) throws Exception {
-        Process A = Runtime.getRuntime().exec("./awale1");
+         //Process A = Runtime.getRuntime().exec("");
+        Process A = Runtime.getRuntime().exec("./super_bot");
         Process B = Runtime.getRuntime().exec("./super_bot");
         // Process B = new ProcessBuilder("./B").start();
 

@@ -54,15 +54,12 @@ inline std::string format_move(const Move& mv) {
     return ss.str();
 }
 
-inline std::string format_result(State s, const Game& g) {
+inline std::string format_result(const Game& g, const Move& last_move) {
     std::stringstream ss;
     ss << "RESULT ";
     
-    // Format: RESULT <outcome> <scoreJ1> <scoreJ2>
-    if (s == State::G1WIN) ss << "A";
-    else if (s == State::G2WIN) ss << "B";
-    else if (s == State::DRAW) ss << "DRAW";
-    else ss << "LIMIT";
+    // Format: RESULT <last_move> <scoreJ1> <scoreJ2>
+    ss << format_move(last_move);
     
     // Add scores
     ss << " " << (int)g.cap[0] << " " << (int)g.cap[1];
