@@ -13,10 +13,10 @@ all: super_bot.exe
 # Bots
 # ============================================================================
 
-super_bot.exe: main.cpp protocol.hpp
+super_bot.exe: main.cpp protocol.hpp $(AWALE_SRCS)
 	$(CXX) $(CXXFLAGS) -I$(AWALE_DIR)/game -I$(AWALE_DIR)/io -I. main.cpp $(AWALE_SRCS) -o super_bot.exe
 
 clean:
-	if exist super_bot.exe del /Q super_bot.exe
+	cmd /C del /Q super_bot.exe
 
 .PHONY: all clean

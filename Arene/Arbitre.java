@@ -2,12 +2,12 @@ import java.io.*;
 import java.util.concurrent.*;
 
 public class Arbitre {
-    private static final int TIMEOUT_SECONDS = 3;
+    private static final int TIMEOUT_SECONDS = 5;
 
     public static void main(String[] args) throws Exception {
         // Process A = Runtime.getRuntime().exec("");
         Process A = Runtime.getRuntime().exec("super_bot.exe");
-        Process B = Runtime.getRuntime().exec("super_bot.exe");
+        Process B = Runtime.getRuntime().exec("awale2.exe");
         // Process B = new ProcessBuilder("./B").start();
 
         Joueur joueurA = new Joueur("A", A);
